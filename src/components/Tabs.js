@@ -9,7 +9,7 @@ const KEY_RIGHT = 39;
 let tabsId = 1;
 
 const Tabs = ({ children }) => {
-    const uid = useMemo(() => (tabsId += 1));
+    const uid = useMemo(() => (tabsId += 1)); // eslint-disable-line no-return-assign
     const [selectedIndex, setSelectedIndex] = useState(0);
     const selectedTab = createRef();
 
@@ -19,18 +19,18 @@ const Tabs = ({ children }) => {
         }
     }, [selectedIndex]);
 
-    const tabs = useMemo(() => {
-        return toChildArray(children).map(({ props }, index) => ({
+    const tabs = useMemo(() => (
+        toChildArray(children).map(({ props }, index) => ({
             index,
             label: props.label,
             id: props.id || `tab-${uid}-${index + 1}`,
             class: props.class,
-            content: props.children
-        }));
-    }, [children]);
+            content: props.children,
+        }))
+    ), [children]);
 
     const setSelectedTab = (index) => (el) => {
-        if(index === selectedIndex) {
+        if (index === selectedIndex) {
             selectedTab.current = el;
         }
     };
@@ -57,11 +57,11 @@ const Tabs = ({ children }) => {
     return (
         <div class="tabs">
             <ul class="tab-list" role="tablist" onKeyDown={onKeyDown}>
-                {tabs.map(({index, ...props}) => (
-                    <Tab 
-                        {...props} 
+                {tabs.map(({ index, ...props }) => (
+                    <Tab
+                        {...props}
                         selected={selectedIndex === index}
-                        onClick={onTabClick(index)} 
+                        onClick={onTabClick(index)}
                         buttonRef={setSelectedTab(index)}
                     />
                 ))}
@@ -73,6 +73,6 @@ const Tabs = ({ children }) => {
             ))}
         </div>
     );
-}
+};
 
 export default Tabs;

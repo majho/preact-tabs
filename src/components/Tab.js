@@ -3,11 +3,12 @@ import classNames from 'classnames';
 
 const Tab = ({ label, selected, id, onClick, buttonRef }) => (
     <li role="presentation">
-        <button 
+        <button
             id={id}
             class={classNames('tab', { 'is-selected': selected })}
+            type="button"
             role="tab"
-            tabindex={selected ? 0 : -1}
+            tabIndex={selected ? 0 : -1}
             aria-selected={selected.toString()}
             ariacontrols={`${id}-panel`}
             onClick={onClick}
