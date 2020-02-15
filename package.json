@@ -9,8 +9,8 @@
   "scripts": {
     "lint": "eslint lib/**/*.js --fix"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["tabs", "preact"],
+  "author": "Martin Johansson",
   "license": "ISC",
   "peerDependencies": {
     "preact": "^10.3.1"
